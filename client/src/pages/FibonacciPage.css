@@ -1,0 +1,40 @@
+.header {
+    border-color: gray;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    padding: 12px;
+    margin-top: 12px;
+}
+
+.index__form {
+    margin: 24px;
+}
+
+.form__control {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.index__form input[type="submit"] {
+    background-color: white;
+    padding: 6px 12px;
+    outline: none;
+    border: solid 1px grey;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.indicies {
+
+}
+
+.calculated__values {
+    
+}
+
+.calculatedValues__list {
+    list-style: none;
+    padding: 0;
+}

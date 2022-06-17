@@ -43,4 +43,4 @@ jobs:
       - name: Push Worker Image Latest
         run: docker push rzldevdoc/multi-worker:latest
       - name: Push Worker Image with specific version
-        run: docker push rzldevdoc/multi:worker:${{ env.WORKER_IMAGE_VERSION }}
+        run: docker push rzldevdoc/multi-worker:${{ env.WORKER_IMAGE_VERSION }}

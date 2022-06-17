@@ -1,0 +1,30 @@
+sudo: required
+services:
+  - docker
+
+env:
+  global:
+    - CLIENT_VERSION=2.0.1
+    - API_VERSION=2.0.1
+    - WORKER_VERSION=2.0.1
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project project-id
+  - gcloud config set compute/zone us-something
+  - gcloud container clusters get-credentials cluster-name
+  - echo "$DOCKERHUB_PASSWORD" | docker login -u "$$DOCKERHUB_USERNAME" --password-stdin
+  - docker build -t rzldevdoc/client-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true rzldevdoc/client-test sh -c "npm run test && npm run lint && npm run prettify"
+
+deploy:
+  provider: script
+  script: bash ./deploy/run.sh
+  on:
+    branch: master

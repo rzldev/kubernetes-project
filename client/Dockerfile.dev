@@ -1,4 +1,5 @@
 FROM node:18-alpine
+ENV CI=true
 
 WORKDIR /var/www/html/docker-app/client
 
